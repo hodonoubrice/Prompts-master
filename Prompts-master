@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les 10 Prompts Master — Brice Digitz</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.fedapay.com/checkout.js?v=1.1.7"></script>
+<style>
+  :root {
+    --bg: #050508;
+    --surface: #0d0b12;
+    --gold: #9040c8;
+    --gold-light: #a258d8;
+    --white: #e8e0f0;
+    --muted: #7a6e8a;
+    --border: rgba(144,64,200,0.2);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html {
+    scroll-behavior: smooth;
+    background: #050508 !important;
+  }
+
+  body {
+    background: #050508 !important;
+    color: #e8e0f0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.4;
+  }
+
+  .container { max-width: 680px; margin: 0 auto; padding: 0 24px; background: transparent; }
+
+  section { padding: 60px 0; background: transparent; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 0 60px;
+    position: relative;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(144,64,200,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .badge {
+    display: inline-block;
+    background: rgba(144,64,200,0.12);
+    border: 1px solid rgba(196,168,232,0.25);
+    color: #a87fd4;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(2.4rem, 8vw, 4.2rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: #a87fd4;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: #aaa;
+    max-width: 500px;
+    margin-bottom: 48px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-sub strong { color: var(--white); font-weight: 500; }
+
+  .cta-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.03em;
+    padding: 18px 40px;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: all 0.2s;
+    animation: fadeUp 0.6s 0.3s ease both;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.1);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .cta-primary:hover::after { opacity: 1; }
+  .cta-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(181,123,238,0.35); }
+
+  .price-note {
+    margin-top: 16px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    animation: fadeUp 0.6s 0.4s ease both;
+  }
+
+  .price-note span { color: #b899e0; font-weight: 500; }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 60px 0;
+  }
+
+  /* ─── PAIN ─── */
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #a87fd4;
+    margin-bottom: 24px;
+  }
+
+  .pain-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .pain-list li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 20px;
+    background: #0d0b12;
+    border: 1px solid #1a1525;
+    border-radius: 4px;
+  }
+
+  .pain-icon { font-size: 1.3rem; flex-shrink: 0; margin-top: 2px; }
+
+  .pain-list li p { font-size: 0.95rem; color: #bbb; }
+  .pain-list li strong { display: block; color: var(--white); font-weight: 500; margin-bottom: 4px; }
+
+  /* ─── SOLUTION ─── */
+  .solution-block {
+    background: #0f0b18;
+    border: 1px solid rgba(144,64,200,0.25);
+    border-radius: 6px;
+    padding: 40px;
+    margin: 40px 0;
+  }
+
+  .solution-block h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .solution-block p { color: #aaa; font-size: 0.95rem; }
+
+  /* ─── PROMPTS ─── */
+  .prompts-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 32px 0;
+  }
+
+  .prompt-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 24px;
+    background: #0d0b12;
+    border: 1px solid #1a1525;
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .prompt-card:hover {
+    background: #120f1a;
+    border-left-color: var(--gold-light);
+  }
+
+  .prompt-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #a87fd4;
+    letter-spacing: 0.1em;
+    flex-shrink: 0;
+    width: 28px;
+  }
+
+  .prompt-emoji { font-size: 1.4rem; flex-shrink: 0; }
+
+  .prompt-info h4 {
+    font-family: 'Syne', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 3px;
+  }
+
+  .prompt-info p { font-size: 0.82rem; color: var(--muted); }
+
+  /* ─── FOR WHOM ─── */
+  .for-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .for-card {
+    padding: 20px;
+    border: 1px solid #1a1525;
+    border-radius: 4px;
+    background: #0d0b12;
+  }
+
+  .for-card .ico { font-size: 1.5rem; margin-bottom: 10px; }
+  .for-card p { font-size: 0.88rem; color: #aaa; }
+
+  /* ─── OFFER BOX ─── */
+  .offer-box {
+    background: #0d0b12;
+    border: 1px solid rgba(144,64,200,0.4);
+    border-radius: 8px;
+    padding: 48px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .offer-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  }
+
+  .offer-box h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+
+  .offer-box .product-name {
+    color: #a87fd4;
+    font-family: 'Syne', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 800;
+    display: block;
+    margin-bottom: 24px;
+  }
+
+  .include-list {
+    list-style: none;
+    text-align: left;
+    max-width: 360px;
+    margin: 0 auto 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .include-list li {
+    display: flex;
+    gap: 12px;
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+
+  .include-list li::before {
+    content: '✓';
+    color: #a87fd4;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .price-display {
+    margin: 32px 0;
+  }
+
+  .price-display .old {
+    font-size: 0.9rem;
+    color: var(--muted);
+    text-decoration: line-through;
+    margin-bottom: 4px;
+  }
+
+  .price-display .current {
+    font-family: 'Syne', sans-serif;
+    font-size: 3rem;
+    font-weight: 800;
+    color: #a87fd4;
+    line-height: 1;
+  }
+
+  .price-display .currency {
+    font-size: 1.2rem;
+    vertical-align: super;
+    margin-right: 4px;
+  }
+
+  .price-display .period {
+    font-size: 0.85rem;
+    color: var(--muted);
+    display: block;
+    margin-top: 6px;
+  }
+
+  .cta-large {
+    display: block;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto;
+    background: var(--gold);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 0.03em;
+    padding: 20px 40px;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: all 0.2s;
+    text-align: center;
+  }
+
+  .cta-large:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 50px rgba(181,123,238,0.4);
+  }
+
+  .secure-note {
+    margin-top: 16px;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+
+  /* ─── AUTHOR ─── */
+  .author-block {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    padding: 32px;
+    background: #0d0b12;
+    border: 1px solid #1a1525;
+    border-radius: 6px;
+    margin: 40px 0;
+  }
+
+  .author-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #9040c8, #5a1a8a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: #000;
+    flex-shrink: 0;
+  }
+
+  .author-text h4 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .author-text p { font-size: 0.88rem; color: #aaa; }
+
+  /* ─── FAQ ─── */
+  .faq-item {
+    border-bottom: 1px solid #1a1525;
+    padding: 24px 0;
+  }
+
+  .faq-item h4 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    color: var(--white);
+  }
+
+  .faq-item p { font-size: 0.9rem; color: #888; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    padding: 48px 0;
+    text-align: center;
+    border-top: 1px solid #1a1525;
+    margin-top: 80px;
+  }
+
+  footer p { font-size: 0.8rem; color: #555; }
+  footer strong { color: #a87fd4; }
+
+  /* ─── SECTION TITLES ─── */
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .section-sub { color: #888; font-size: 0.95rem; margin-bottom: 32px; }
+
+
+
+  .feda-btn {
+    cursor: pointer;
+    border: none;
+    outline: none;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 480px) {
+    .for-grid { grid-template-columns: 1fr; }
+    .offer-box { padding: 32px 24px; }
+    .author-block { flex-direction: column; }
+    .solution-block { padding: 28px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="badge">Brice Digitz · Formation IA</span>
+
+    <h1 class="hero-title">
+      10 Prompts.<br>
+      Un business <em>qui tourne</em><br>
+      depuis ton téléphone.
+    </h1>
+
+    <p class="hero-sub">
+      La bibliothèque de prompts que j'utilise pour <strong>rédiger, vendre, automatiser et lancer</strong> — sans agence, sans budget pub, sans diplôme.
+    </p>
+
+    <button class="cta-primary feda-btn">Je veux la bibliothèque →</button>
+    <p class="price-note">Accès immédiat · <span>4 900 FCFA</span> paiement unique</p>
+  </div>
+
+  <hr class="divider">
+
+  <!-- PAIN -->
+  <section>
+    <p class="section-label">Le vrai problème</p>
+    <h2 class="section-title">Tu utilises Claude comme un moteur de recherche.</h2>
+    <p class="section-sub">Et tu obtiens des résultats de moteur de recherche.</p>
+
+    <ul class="pain-list">
+      <li>
+        <span class="pain-icon">🥱</span>
+        <div>
+          <strong>Les réponses sont trop génériques</strong>
+          <p>Tu poses une question vague, tu reçois une réponse vague. Résultat : tu réécris tout toi-même.</p>
+        </div>
+      </li>
+      <li>
+        <span class="pain-icon">⏱️</span>
+        <div>
+          <strong>Tu perds plus de temps qu'avant</strong>
+          <p>Reformuler, corriger, relancer… À ce rythme, tu aurais écrit plus vite à la main.</p>
+        </div>
+      </li>
+      <li>
+        <span class="pain-icon">🤖</span>
+        <div>
+          <strong>Les textes générés sonnent comme une IA</strong>
+          <p>Ton audience le sent. Ce n'est plus toi qui parles. Ton authenticité disparaît.</p>
+        </div>
+      </li>
+      <li>
+        <span class="pain-icon">🌀</span>
+        <div>
+          <strong>Tu ne sais pas quoi lui demander exactement</strong>
+          <p>Tu sais que l'outil est puissant. Mais tu n'as pas le "code" pour le débloquer vraiment.</p>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- SOLUTION -->
+  <div class="solution-block">
+    <h2>La différence entre un utilisateur moyen<br>et un utilisateur efficace ?</h2>
+    <br>
+    <p>Ce n'est pas l'intelligence. Ce n'est pas le diplôme. Ce n'est pas le matériel.<br><br>
+    C'est la <strong style="color:var(--white)">structure du prompt</strong>. Un prompt bien construit donne un contexte précis, un rôle clair, un format attendu et des contraintes utiles. L'IA retourne alors un travail d'expert. Chaque fois.</p>
+  </div>
+
+  <!-- PROMPTS LIST -->
+  <section>
+    <p class="section-label">Ce que tu reçois</p>
+    <h2 class="section-title">Les 10 Prompts Master</h2>
+    <p class="section-sub">Chacun est prêt à copier-coller et calibré pour le marché africain francophone.</p>
+
+    <div class="prompts-grid">
+      <div class="prompt-card">
+        <span class="prompt-num">01</span>
+        <span class="prompt-emoji">🏗️</span>
+        <div class="prompt-info">
+          <h4>L'Architecte de Business</h4>
+          <p>Analyse ton business comme un consultant senior et identifie tes vraies priorités</p>
+        </div>
+      </div>
+      <div class="prompt-card">
+        <span class="prompt-num">02</span>
+        <span class="prompt-emoji">🎓</span>
+        <div class="prompt-info">
+          <h4>Le Tuteur Socratique</h4>
+          <p>Apprend n'importe quel concept jusqu'à la maîtrise réelle — pas juste la théorie</p>
+        </div>
+      </div>
+      <div class="prompt-card">
+        <span class="prompt-num">03</span>
+        <span class="prompt-emoji">✍️</span>
+        <div class="prompt-info">
+          <h4>Le Copywriter de Vente</h4>
+          <p>Accroches Facebook, messages WhatsApp et réponses aux objections prêts à l'emploi</p>
+        </div>
+      </div>
+      <div class="prompt-card">
+        <span class="prompt-num">04</span>
+        <span class="prompt-emoji">📋</span>
+        <div class="prompt-info">
+          <h4>Le Planificateur de Contenu</h4>
+          <p>30 jours de posts organisés par thème, format et accroche — en une session</p>
+        </div>
+      </div>
+      <div class="prompt-card">
+        <span class="prompt-num">05</span>
+        <span class="prompt-emoji">🔍</span>
+        <div class="prompt-info">
+          <h4>Le Détective de Marché</h4>
+          <p>Comprends tes clients mieux qu'ils se comprennent eux-mêmes</p>
+        </div>
+      </div>
+      <div class="prompt-card">
+        <span class="prompt-num">06</span>
+        <span class="prompt-emoji">🤖</span>
+        <div class="prompt-info">
+          <h4>L'Automatiseur de Tâches</h4>
+          <p>Transforme tes tâches répétitives en workflows automatiques avec des outils gratuits</p>
+        </div>
+      </div>
+      <div class="prompt-card">
+        <span class="prompt-num">07</span>
+        <span class="prompt-emoji">💬</span>
+        <div class="prompt-info">
+          <h4>Le Coach de Closing</h4>
+          <p>Une réponse calibrée à chaque type d'objection client — le méfiant, l'hésitant, le négociateur</p>
+        </div>
+      </div>
+      <div class="prompt-card">
+        <span class="prompt-num">08</span>
+        <span class="prompt-emoji">🪞</span>
+        <div class="prompt-info">
+          <h4>L'Éditeur Sans Pitié</h4>
+          <p>Note ton texte, identifie les points faibles et propose une version améliorée complète</p>
+        </div>
+      </div>
+      <div class="prompt-card">
+        <span class="prompt-num">09</span>
+        <span class="prompt-emoji">🎯</span>
+        <div class="prompt-info">
+          <h4>Le Stratège de Lancement</h4>
+          <p>Plan de lancement organique complet de J-7 à J+3, action par action</p>
+        </div>
+      </div>
+      <div class="prompt-card">
+        <span class="prompt-num">10</span>
+        <span class="prompt-emoji">🧬</span>
+        <div class="prompt-info">
+          <h4>Le Clonateur de Style</h4>
+          <p>Capture ta voix unique et écrit dans ton style — pas dans celui d'une IA générique</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR WHOM -->
+  <section>
+    <p class="section-label">Pour qui</p>
+    <h2 class="section-title">Cette bibliothèque est faite pour toi si…</h2>
+    <div class="for-grid">
+      <div class="for-card">
+        <div class="ico">📱</div>
+        <p>Tu travailles depuis ton téléphone et tu veux aller plus vite</p>
+      </div>
+      <div class="for-card">
+        <div class="ico">🛒</div>
+        <p>Tu vends un produit ou service et tu veux du contenu qui convertit</p>
+      </div>
+      <div class="for-card">
+        <div class="ico">🧠</div>
+        <p>Tu sens que l'IA est puissante mais tu ne sais pas comment la "débloquer"</p>
+      </div>
+      <div class="for-card">
+        <div class="ico">🌍</div>
+        <p>Tu cibles une audience africaine et les prompts génériques ne sonnent pas juste</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AUTHOR -->
+  <div class="author-block">
+    <div class="author-avatar">BD</div>
+    <div class="author-text">
+      <h4>Brice Digitz — AI Workflow Consultant</h4>
+      <p>Je construis et vends des outils IA et des formations digitales pour les entrepreneurs francophones d'Afrique de l'Ouest. Ces 10 prompts sont ceux que j'utilise dans mon propre business, depuis mon iPhone, tous les jours.</p>
+    </div>
+  </div>
+
+  <!-- OFFER -->
+  <section id="offre">
+    <div class="offer-box">
+      <h2>Tu reçois</h2>
+      <span class="product-name">Les 10 Prompts Master</span>
+
+      <ul class="include-list">
+        <li>10 prompts structurés, prêts à copier-coller</li>
+        <li>Chaque prompt avec son usage expliqué</li>
+        <li>Calibré pour le marché africain francophone</li>
+        <li>Utilisable depuis n'importe quel appareil</li>
+        <li>Accès immédiat et à vie</li>
+        <li>Mises à jour incluses</li>
+      </ul>
+
+      <div class="price-display">
+        <p class="old">Valeur estimée : 15 000 FCFA</p>
+        <p class="current"><span class="currency">FCFA</span>4 900</p>
+        <span class="period">Paiement unique · Accès immédiat</span>
+      </div>
+
+      <button class="cta-large feda-btn">J'accède à la bibliothèque →</button>
+      <p class="secure-note">🔒 Paiement sécurisé via Selar · Mobile Money accepté</p>
+    </div>
+  </section>
+
+  <!-- Message succès paiement -->
+  <div id="success-msg" style="display:none; background:#0d1f14; border:1px solid #2d8a4e; border-radius:8px; padding:32px; text-align:center; margin: 0 0 40px;">
+    <p style="font-size:2rem; margin-bottom:12px;">✅</p>
+    <h3 style="font-family:'Syne',sans-serif; font-size:1.3rem; color:#e8e0f0; margin-bottom:8px;">Paiement confirmé !</h3>
+    <p style="color:#aaa; font-size:0.9rem;">Tu vas recevoir ton PDF dans les prochaines minutes.<br>Vérifie ton email ou attends le message WhatsApp.</p>
+  </div>
+
+  <!-- FAQ -->
+  <section>
+    <p class="section-label">Questions fréquentes</p>
+    <h2 class="section-title">FAQ</h2>
+
+    <div class="faq-item">
+      <h4>J'ai besoin de quel abonnement Claude pour utiliser ces prompts ?</h4>
+      <p>La version gratuite de Claude fonctionne. Un compte suffira pour démarrer immédiatement.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Ces prompts fonctionnent-ils avec ChatGPT ou Gemini aussi ?</h4>
+      <p>Oui. La structure est adaptable à n'importe quel modèle d'IA conversationnel. Ils ont été optimisés pour Claude mais restent efficaces ailleurs.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Est-ce que je peux payer par Mobile Money ?</h4>
+      <p>Oui. La plateforme Selar accepte les paiements Mobile Money disponibles dans ta zone.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Je n'ai aucune expérience avec l'IA. Est-ce que ça me convient ?</h4>
+      <p>C'est exactement pour toi. Chaque prompt est accompagné d'une explication. Tu copies, tu colles, tu obtiens un résultat.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Comment je reçois le document après paiement ?</h4>
+      <p>Accès immédiat dès confirmation du paiement. Tu reçois un lien de téléchargement direct.</p>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section style="text-align:center; padding: 40px 0 80px;">
+    <h2 class="section-title" style="margin-bottom:16px;">
+      Prêt à utiliser Claude<br>comme un <em style="color:var(--gold)">vrai outil de business</em> ?
+    </h2>
+    <p style="color:#888; margin-bottom:40px; font-size:0.95rem;">Accès immédiat · 4 900 FCFA · Aucun abonnement</p>
+    <button class="cta-primary feda-btn" style="font-size:1.05rem; padding: 20px 48px;">Obtenir les 10 Prompts Master →</button>
+  </section>
+
+</div>
+
+<footer>
+  <div class="container">
+    <p>© 2026 <strong>Brice Digitz</strong> · Tous droits réservés</p>
+    <p style="margin-top:8px;">Abomey-Calavi, Bénin · Formation digitale pour l'Afrique francophone</p>
+  </div>
+</footer>
+
+  <script>
+  // ── FedaPay Checkout Init ──────────────────────────────
+  document.addEventListener('DOMContentLoaded', function () {
+    var widget = FedaPay.init({
+      public_key: 'pk_live_CshipBh5XCSMtcmPOYNwmWBi',
+      transaction: {
+        amount: 4900,
+        description: 'Les 10 Prompts Master — Brice Digitz'
+      },
+      currency: {
+        iso: 'XOF'
+      },
+      customer: {
+        email: '',   // FedaPay demande l'email au client dans le formulaire
+      },
+      onComplete: function(resp) {
+        if (resp.reason === FedaPay.DIALOG_DISMISSED) {
+          // Fermé sans payer
+        } else {
+          document.querySelectorAll('.feda-btn').forEach(function(btn) {
+            btn.textContent = '✓ Paiement reçu — Ton PDF arrive par email';
+            btn.style.background = '#2d8a4e';
+            btn.style.cursor = 'default';
+          });
+          var msg = document.getElementById('success-msg');
+          if (msg) {
+            msg.style.display = 'block';
+            msg.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      }
+    });
+
+    document.querySelectorAll('.feda-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        widget.open();
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
